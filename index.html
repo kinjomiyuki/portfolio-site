@@ -844,11 +844,6 @@ ul, ol { list-style: none; }
   transform: scale(1.05);
 }
 
-/* 16:9 thumbnails inside the 4:3 card: show whole image, fill the rest with its gradient */
-.work-thumb-inner--wide .work-thumb-img {
-  object-fit: contain;
-  object-position: center;
-}
 
 /* Preparing badge */
 .work-badge-preparing {
@@ -2081,7 +2076,7 @@ textarea {
         <div class="works-grid">
 <article class="work-card" data-category="ui">
             <div class="work-thumb">
-              <div class="work-thumb-inner work-thumb-inner--wide" style="background: linear-gradient(135deg,#4c1d95,#6d4ee0 60%,#8b7cf6);">
+              <div class="work-thumb-inner">
                 <img src="images/thumb-uiux-visual-learning.jpg" alt="設計思考ラボ — UI/UX学習アプリのスマホ画面" class="work-thumb-img" loading="lazy">
               </div>
               <div class="work-overlay">
@@ -2100,7 +2095,7 @@ textarea {
 
 <article class="work-card" data-category="ui">
             <div class="work-thumb">
-              <div class="work-thumb-inner work-thumb-inner--wide" style="background: linear-gradient(135deg,#27493f,#3f7566 60%,#5a9a88);">
+              <div class="work-thumb-inner">
                 <img src="images/thumb-marketing-learn.jpg" alt="Marketing Learn — マーケティング学習アプリのトップ画面" class="work-thumb-img">
               </div>
               <div class="work-overlay">
@@ -2119,7 +2114,7 @@ textarea {
 
 <article class="work-card" data-category="ui">
             <div class="work-thumb">
-              <div class="work-thumb-inner work-thumb-inner--wide" style="background: linear-gradient(135deg,#f5a60b,#ffc933 60%,#ffe08a);">
+              <div class="work-thumb-inner">
                 <img src="images/thumb-onestep.jpg" alt="OneStep — プログラミング学習アプリのスマホモック画面" class="work-thumb-img" loading="lazy">
               </div>
               <div class="work-overlay">
