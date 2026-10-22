@@ -52,6 +52,16 @@ JOBS = [
         ],
     },
     {
+        "out": ROOT / "thumb-marketing-learn.jpg",
+        "bg": (232, 237, 229),
+        "sources": [
+            SHOTS / "marketing-01-home.png",
+            SHOTS / "marketing-02-intro.png",
+            SHOTS / "marketing-03-predict.png",
+            SHOTS / "marketing-04-read.png",
+        ],
+    },
+    {
         "out": ROOT / "thumb-valance.jpg",
         "sources": [
             SHOTS / "valance-01-mood.png",
@@ -137,15 +147,18 @@ def drop_shadow(im: Image.Image, blur: int = 14, offset: tuple[int, int] = (0, 8
     w, h = im.size
     pad = blur * 2 + max(offset) + 8
     canvas = Image.new("RGBA", (w + pad * 2, h + pad * 2), (0, 0, 0, 0))
-    shadow = Image.new("RGBA", (w, h), (40, 48, 62, 80))
-    shadow = shadow.filter(ImageFilter.GaussianBlur(radius=blur))
-    ox, oy = pad + offset[0], pad + offset[1]
-    canvas.alpha_composite(shadow, (ox, oy))
+    # 影は端末の輪郭（角丸）で作り、ぼかしが切れないようパディング付きの画像上で行う
+    alpha = Image.new("L", canvas.size, 0)
+    alpha.paste(im.getchannel("A").point(lambda a: a * 80 // 255), (pad + offset[0], pad + offset[1]))
+    alpha = alpha.filter(ImageFilter.GaussianBlur(radius=blur))
+    shadow = Image.new("RGBA", canvas.size, (40, 48, 62, 0))
+    shadow.putalpha(alpha)
+    canvas.alpha_composite(shadow)
     canvas.alpha_composite(im, (pad, pad))
     return canvas
 
 
-def build(sources: list[Path], out: Path) -> None:
+def build(sources: list[Path], out: Path, bg: tuple[int, int, int] = BG) -> None:
     for p in sources:
         if not p.is_file():
             raise FileNotFoundError(p)
@@ -170,7 +183,7 @@ def build(sources: list[Path], out: Path) -> None:
     handsets = [phone_mock(s, pw, ph) for s in screens]
     row_w = cols * pw + total_gap
 
-    base = Image.new("RGBA", (CANVAS_W, CANVAS_H), BG + (255,))
+    base = Image.new("RGBA", (CANVAS_W, CANVAS_H), bg + (255,))
     start_x = SIDE + (content_w - row_w) // 2
     start_y = SIDE + (content_h - ph) // 2
 
@@ -187,7 +200,7 @@ def build(sources: list[Path], out: Path) -> None:
 
 def main() -> None:
     for job in JOBS:
-        build(job["sources"], job["out"])
+        build(job["sources"], job["out"], job.get("bg", BG))
 
 
 if __name__ == "__main__":
