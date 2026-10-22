@@ -62,6 +62,14 @@ JOBS = [
         ],
     },
     {
+        "out": ROOT / "thumb-onestep.jpg",
+        "sources": [
+            SHOTS / "onestep-01-home.png",
+            SHOTS / "onestep-02-quiz.png",
+            SHOTS / "onestep-03-assistant.png",
+        ],
+    },
+    {
         "out": ROOT / "thumb-valance.jpg",
         "sources": [
             SHOTS / "valance-01-mood.png",
