@@ -70,6 +70,15 @@ JOBS = [
         ],
     },
     {
+        "out": ROOT / "thumb-tsubonavi.jpg",
+        "sources": [
+            SHOTS / "tsubonavi-01-home.jpg",
+            SHOTS / "tsubonavi-02-animation.jpg",
+            SHOTS / "tsubonavi-03-body.jpg",
+            SHOTS / "tsubonavi-04-quiz.jpg",
+        ],
+    },
+    {
         "out": ROOT / "thumb-valance.jpg",
         "sources": [
             SHOTS / "valance-01-mood.png",
