@@ -1330,7 +1330,7 @@ ul, ol { list-style: none; }
 
 .video-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 40px;
   align-items: start;
 }
@@ -1348,10 +1348,6 @@ ul, ol { list-style: none; }
   display: block;
   width: 100%;
   height: auto;
-}
-
-.video-card--portrait .video-frame {
-  max-width: 360px;
 }
 
 .video-info {
@@ -1381,10 +1377,6 @@ ul, ol { list-style: none; }
   .video-grid {
     grid-template-columns: 1fr;
     gap: 56px;
-  }
-  .video-card--portrait .video-frame {
-    max-width: 320px;
-    margin: 0 auto;
   }
 }
 
@@ -2599,19 +2591,6 @@ textarea {
         </div>
 
         <div class="video-grid">
-          <figure class="video-card video-card--portrait">
-            <div class="video-frame">
-              <video controls playsinline preload="none" width="720" height="1280" poster="images/video-poster-cbt.jpg" aria-label="CBTアプリのプロモーション動画">
-                <source src="videos/cbt-app-promo.mp4" type="video/mp4">
-              </video>
-            </div>
-            <figcaption class="video-info">
-              <p class="work-category-tag">PROMOTION / 9:16</p>
-              <h3 class="video-title">CBTアプリ プロモーション動画</h3>
-              <p class="video-desc">眠れない夜にアプリと対話し、朝には前向きな気持ちになる。CBT（認知行動療法）アプリの体験を15秒で伝える縦型動画。</p>
-            </figcaption>
-          </figure>
-
           <figure class="video-card">
             <div class="video-frame">
               <video controls playsinline preload="none" width="1280" height="720" poster="images/video-poster-cinematic.jpg" aria-label="夜の街を走る車のシネマティック映像">
