@@ -2009,6 +2009,85 @@ textarea {
   }
 }
 
+/* ── BY THE NUMBERS ── */
+.numbers-band {
+  margin-top: 72px;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 40px 0 36px;
+}
+.numbers-head {
+  font-family: var(--font-sans-en);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--color-light);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.number-item {
+  border-left: 1px solid var(--color-border);
+  padding-left: 20px;
+}
+.number-value {
+  font-family: var(--font-serif-en);
+  font-size: clamp(44px, 6vw, 64px);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--color-dark);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.number-value small {
+  font-size: 0.4em;
+  margin-left: 4px;
+  color: var(--color-accent2);
+}
+.number-label {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--color-dark);
+}
+.number-note {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--color-light);
+  line-height: 1.7;
+}
+.numbers-foot {
+  margin-top: 28px;
+  font-size: 11px;
+  color: var(--color-light);
+}
+@media (max-width: 860px) {
+  .numbers-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+  .numbers-band { margin-top: 56px; }
+}
+
+/* ── WORK METRICS ── */
+.work-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin-bottom: 14px;
+}
+.work-metrics li {
+  list-style: none;
+  font-size: 11px;
+  color: var(--color-mid);
+}
+.work-metrics strong {
+  font-family: var(--font-serif-en);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--color-accent2);
+  margin-right: 3px;
+  line-height: 1;
+  font-variant-numeric: lining-nums;
+}
 </style>
 </head>
 <body>
@@ -2120,6 +2199,33 @@ textarea {
             </ul>
           </div>
         </div>
+
+        <div class="numbers-band" aria-labelledby="numbers-head">
+          <p class="numbers-head" id="numbers-head">By the numbers — 数字で見る実績</p>
+          <div class="numbers-grid">
+            <div class="number-item">
+              <p class="number-value"><span data-count="works">22</span><small>件</small></p>
+              <p class="number-label">制作実績</p>
+              <p class="number-note">企画・設計・デザインを担当</p>
+            </div>
+            <div class="number-item">
+              <p class="number-value"><span data-count="apps">10</span><small>本</small></p>
+              <p class="number-label">Webアプリ / UI</p>
+              <p class="number-note">学習・ヘルスケア・業務ツール</p>
+            </div>
+            <div class="number-item">
+              <p class="number-value"><span data-count="sites">12</span><small>件</small></p>
+              <p class="number-label">Webサイト</p>
+              <p class="number-note">コーポレート・ブランド・LP</p>
+            </div>
+            <div class="number-item">
+              <p class="number-value"><span data-count="demos">14</span><small>本</small></p>
+              <p class="number-label">公開中のデモ</p>
+              <p class="number-note">URLから実際に操作できます</p>
+            </div>
+          </div>
+          <p class="numbers-foot">※ 数値はこのページに掲載している作品の件数です。</p>
+        </div>
       </div>
     </section>
 
@@ -2147,6 +2253,7 @@ textarea {
               <p class="work-category-tag">WEB APP / LEARNING</p>
               <h3 class="work-title">設計思考ラボ — UI/UX学習アプリ</h3>
               <p class="work-desc">クイズ式・ソクラテス式・疑似実践の3方法でUI/UXの原則を「使える」知識に変える学習アプリ。</p>
+              <ul class="work-metrics" aria-label="数字で見るポイント"><li><strong>3</strong>つの学習方式</li></ul>
               <div class="work-tags">
                 <span>UI/UX</span><span>Quiz</span><span>Practice</span>
               </div>
@@ -2166,6 +2273,7 @@ textarea {
               <p class="work-category-tag">WEB APP / LEARNING</p>
               <h3 class="work-title">Marketing Learn — マーケティング学習アプリ</h3>
               <p class="work-desc">ソクラテス式対話・クイズ・シナリオ演習の3モードでマーケティングの思考力を鍛える学習アプリ。</p>
+              <ul class="work-metrics" aria-label="数字で見るポイント"><li><strong>3</strong>つの学習モード</li></ul>
               <div class="work-tags">
                 <span>Learning UX</span><span>Quiz</span><span>Scenario</span>
               </div>
@@ -2204,6 +2312,7 @@ textarea {
               <p class="work-category-tag">WEB APP / LEARNING</p>
               <h3 class="work-title">ツボナビ — 指圧学習アプリ</h3>
               <p class="work-desc">症状から探して、人体図で学ぶ指圧・マッサージの学習アプリ。ツボの位置と施術の手順をアニメーションで確認し、163問のクイズで定着させます。オフラインでも使えるPWA。</p>
+              <ul class="work-metrics" aria-label="数字で見るポイント"><li><strong>163</strong>問のクイズ</li></ul>
               <div class="work-tags">
                 <span>JavaScript</span><span>PWA</span><span>Quiz</span>
               </div>
@@ -2223,6 +2332,7 @@ textarea {
               <p class="work-category-tag">WEB APP / TOOL</p>
               <h3 class="work-title">マインドフル・パス — CBTウェルネスアプリ</h3>
               <p class="work-desc">認知行動療法を意識したセルフケア向けモバイルレイアウト。ネオモーフィズム（ソフトUI）で統一し、下部ナビで「ホーム」（気分チェック・チャット誘導）、「チャット」（AIセラピストとのテキスト／音声対話）、「メモリー」（セラピー記録の振り返り）、「進捗状況」（週間の成長・セルフケア導線）、「設定」（プロフィール・アプリロック）を切り替え。サムネは5画面をスマホモックに収め、横一列に並べた構成です。</p>
+              <ul class="work-metrics" aria-label="数字で見るポイント"><li><strong>5</strong>画面を設計</li></ul>
               <div class="work-tags">
                 <span>CBT</span><span>Wellbeing</span><span>Mobile Web UI</span>
               </div>
@@ -2242,6 +2352,7 @@ textarea {
               <p class="work-category-tag">UI / APP</p>
               <h3 class="work-title">RECOVERY TRACKER — トレーニング管理</h3>
               <p class="work-desc">部位別の回復時間（48時間目安）を可視化するフィットネス記録アプリ。脚・胸・背中など6部位＋ウォーキングの記録、お休み推奨表示、カレンダー連動の日付入力、ログイン／新規登録までをダーク×ミントグリーンのモバイルUIで設計。</p>
+              <ul class="work-metrics" aria-label="数字で見るポイント"><li><strong>7</strong>種の記録項目</li><li><strong>48</strong>時間の回復目安</li></ul>
               <div class="work-tags">
                 <span>Figma</span><span>Mobile UI</span><span>Fitness App</span>
               </div>
@@ -2261,6 +2372,7 @@ textarea {
               <p class="work-category-tag">WEB APP / TOOL</p>
               <h3 class="work-title">RequiBot — 要件定義チャット</h3>
               <p class="work-desc">チャット形式で要件定義を整理し、設計書まで自動生成するWebアプリ。Webサイト用・アプリ用の2モード、進捗トラッカー付きサイドバー、PDF出力に対応。</p>
+              <ul class="work-metrics" aria-label="数字で見るポイント"><li><strong>2</strong>つの作成モード</li></ul>
               <div class="work-tags">
                 <span>UI Design</span><span>Chat UX</span><span>PDF Generation</span>
               </div>
@@ -2397,6 +2509,7 @@ textarea {
               <p class="work-category-tag">WEB APP / EXPERIENCE</p>
               <h3 class="work-title">La beauté sans concept — ヴァーチャル美術館</h3>
               <p class="work-desc">18点の抽象絵画を一人称視点で歩いて鑑賞できる3D美術館。Three.js（WebGL）で4つの展示室を構築し、WASD／ドラッグ操作・作品クリック解説・作品一覧HUDを備えた没入型Web体験。エントランスはセリフ体と金のアクセントで画廊の格調を演出。</p>
+              <ul class="work-metrics" aria-label="数字で見るポイント"><li><strong>18</strong>点の作品</li><li><strong>4</strong>つの展示室</li></ul>
               <div class="work-tags">
                 <span>Three.js</span><span>WebGL</span><span>Virtual Museum</span>
               </div>
@@ -2889,6 +3002,45 @@ textarea {
 
   
 
+
+  <script>
+  /* 数字で見る実績: 件数はページ内の作品から数え、表示時にカウントアップする */
+  (function () {
+    var works = document.getElementById('works');
+    if (!works) return;
+    var grids = works.querySelectorAll('.works-grid');
+    var demos = {};
+    works.querySelectorAll('.work-card a[href*="netlify.app"]').forEach(function (a) { demos[a.href] = 1; });
+    var counts = {
+      works: works.querySelectorAll('.work-card').length,
+      apps: grids[0] ? grids[0].querySelectorAll('.work-card').length : 0,
+      sites: grids[1] ? grids[1].querySelectorAll('.work-card').length : 0,
+      demos: Object.keys(demos).length
+    };
+    var els = document.querySelectorAll('[data-count]');
+    els.forEach(function (el) {
+      var n = counts[el.getAttribute('data-count')];
+      if (n) el.textContent = n;
+    });
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        var el = e.target, end = parseInt(el.textContent, 10), t0 = null;
+        function step(t) {
+          if (!t0) t0 = t;
+          var p = Math.min((t - t0) / 1200, 1);
+          el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.6 });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+  </script>
 
 </body>
 </html>
