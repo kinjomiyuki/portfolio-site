@@ -1330,7 +1330,7 @@ ul, ol { list-style: none; }
 
 .video-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 40px;
   align-items: start;
 }
@@ -2854,6 +2854,19 @@ body.modal-open { overflow: hidden; }
               <p class="work-category-tag">CINEMATIC / 16:9</p>
               <h3 class="video-title">シネマティック映像サンプル</h3>
               <p class="video-desc">雨に濡れた夜の街で、スポーツカーがドリフトするシーンを描いた横型映像。カメラワークと光の演出にこだわりました。</p>
+            </figcaption>
+          </figure>
+          <figure class="video-card">
+            <div class="video-frame">
+              <video controls playsinline preload="none" width="1280" height="720" poster="images/video-poster-marble-water.jpg" aria-label="大理石の彫刻のような女性が踊り、白い水に変わって再び彫刻に戻る、左右対称の映像">
+                <source src="videos/marble-water.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="video-info">
+              <p class="work-category-tag">CINEMATIC / 16:9</p>
+              <h3 class="video-title">大理石と水のダンス</h3>
+              <p class="video-desc">大理石の彫刻のような女性が踊り、白い水に変わって流れ落ち、再び一体の彫刻に戻る約40秒の映像。体を中央で半分に切って鏡写しにする左右対称の構図と、白を基調にした静かなトーンで仕上げました。</p>
+              <p class="video-desc">使用ツール：Higgsfield（Nano Banana / Kling 3.0 / ElevenLabs Music）、ffmpeg</p>
             </figcaption>
           </figure>
         </div>
