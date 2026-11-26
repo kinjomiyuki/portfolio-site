@@ -2088,6 +2088,28 @@ textarea {
   line-height: 1;
   font-variant-numeric: lining-nums;
 }
+/* ── WORK META (hours / team) ── */
+.work-meta {
+  font-size: 11px;
+  color: var(--color-mid);
+  margin: -4px 0 12px;
+}
+.work-meta-label {
+  font-family: var(--font-sans-en);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--color-light);
+  margin-right: 6px;
+}
+.work-meta-sep {
+  margin: 0 10px;
+  color: var(--color-border);
+}
+.works-note {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--color-light);
+}
 </style>
 </head>
 <body>
@@ -2236,6 +2258,7 @@ textarea {
           <p class="section-label">02 — WORKS</p>
           <h2 class="section-title-jp">制作実績</h2>
           <p class="section-desc">実際に手がけたプロジェクトの一部をご紹介します。</p>
+          <p class="works-note">※ 制作時間は、作品の内容から見積もった目安です。すべて1人で制作しています（アプリはAIを活用して実装）。</p>
         </div>
 
         <h3 class="works-group-title">アプリ</h3>
@@ -2253,6 +2276,7 @@ textarea {
               <p class="work-category-tag">WEB APP / LEARNING</p>
               <h3 class="work-title">設計思考ラボ — UI/UX学習アプリ</h3>
               <p class="work-desc">クイズ式・ソクラテス式・疑似実践の3方法でUI/UXの原則を「使える」知識に変える学習アプリ。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約25時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人（AI活用）</p>
               <ul class="work-metrics" aria-label="数字で見るポイント"><li><strong>3</strong>つの学習方式</li></ul>
               <div class="work-tags">
                 <span>UI/UX</span><span>Quiz</span><span>Practice</span>
@@ -2273,6 +2297,7 @@ textarea {
               <p class="work-category-tag">WEB APP / LEARNING</p>
               <h3 class="work-title">Marketing Learn — マーケティング学習アプリ</h3>
               <p class="work-desc">ソクラテス式対話・クイズ・シナリオ演習の3モードでマーケティングの思考力を鍛える学習アプリ。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約25時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人（AI活用）</p>
               <ul class="work-metrics" aria-label="数字で見るポイント"><li><strong>3</strong>つの学習モード</li></ul>
               <div class="work-tags">
                 <span>Learning UX</span><span>Quiz</span><span>Scenario</span>
@@ -2293,6 +2318,7 @@ textarea {
               <p class="work-category-tag">WEB APP / LEARNING</p>
               <h3 class="work-title">OneStep — プログラミング学習アプリ</h3>
               <p class="work-desc">問答形式でプログラミングの考え方を身につけるWebアプリ。React + Vite + Tailwindで開発、Neumorphismデザインを採用。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約30時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人（AI活用）</p>
               <div class="work-tags">
                 <span>React</span><span>Vite</span><span>Tailwind</span>
               </div>
@@ -2312,6 +2338,7 @@ textarea {
               <p class="work-category-tag">WEB APP / LEARNING</p>
               <h3 class="work-title">ツボナビ — 指圧学習アプリ</h3>
               <p class="work-desc">症状から探して、人体図で学ぶ指圧・マッサージの学習アプリ。ツボの位置と施術の手順をアニメーションで確認し、163問のクイズで定着させます。オフラインでも使えるPWA。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約35時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人（AI活用）</p>
               <ul class="work-metrics" aria-label="数字で見るポイント"><li><strong>163</strong>問のクイズ</li></ul>
               <div class="work-tags">
                 <span>JavaScript</span><span>PWA</span><span>Quiz</span>
@@ -2332,6 +2359,7 @@ textarea {
               <p class="work-category-tag">WEB APP / TOOL</p>
               <h3 class="work-title">マインドフル・パス — CBTウェルネスアプリ</h3>
               <p class="work-desc">認知行動療法を意識したセルフケア向けモバイルレイアウト。ネオモーフィズム（ソフトUI）で統一し、下部ナビで「ホーム」（気分チェック・チャット誘導）、「チャット」（AIセラピストとのテキスト／音声対話）、「メモリー」（セラピー記録の振り返り）、「進捗状況」（週間の成長・セルフケア導線）、「設定」（プロフィール・アプリロック）を切り替え。サムネは5画面をスマホモックに収め、横一列に並べた構成です。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約30時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人（AI活用）</p>
               <ul class="work-metrics" aria-label="数字で見るポイント"><li><strong>5</strong>画面を設計</li></ul>
               <div class="work-tags">
                 <span>CBT</span><span>Wellbeing</span><span>Mobile Web UI</span>
@@ -2352,6 +2380,7 @@ textarea {
               <p class="work-category-tag">UI / APP</p>
               <h3 class="work-title">RECOVERY TRACKER — トレーニング管理</h3>
               <p class="work-desc">部位別の回復時間（48時間目安）を可視化するフィットネス記録アプリ。脚・胸・背中など6部位＋ウォーキングの記録、お休み推奨表示、カレンダー連動の日付入力、ログイン／新規登録までをダーク×ミントグリーンのモバイルUIで設計。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約20時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人（AI活用）</p>
               <ul class="work-metrics" aria-label="数字で見るポイント"><li><strong>7</strong>種の記録項目</li><li><strong>48</strong>時間の回復目安</li></ul>
               <div class="work-tags">
                 <span>Figma</span><span>Mobile UI</span><span>Fitness App</span>
@@ -2372,6 +2401,7 @@ textarea {
               <p class="work-category-tag">WEB APP / TOOL</p>
               <h3 class="work-title">RequiBot — 要件定義チャット</h3>
               <p class="work-desc">チャット形式で要件定義を整理し、設計書まで自動生成するWebアプリ。Webサイト用・アプリ用の2モード、進捗トラッカー付きサイドバー、PDF出力に対応。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約25時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人（AI活用）</p>
               <ul class="work-metrics" aria-label="数字で見るポイント"><li><strong>2</strong>つの作成モード</li></ul>
               <div class="work-tags">
                 <span>UI Design</span><span>Chat UX</span><span>PDF Generation</span>
@@ -2392,6 +2422,7 @@ textarea {
               <p class="work-category-tag">WEB APP / TOOL</p>
               <h3 class="work-title">ワークエリア — PMサポート</h3>
               <p class="work-desc">プロジェクト運営向けダッシュボードUI。3カラムのワークエリア（概要・WBS・マイルストーン・リスク／課題ほか）でRAG・完了率・識別情報・ベースライン／財務・憲章メモを操作できます。「体験する」で操作デモ、「IAを見る」で情報設計（サイトマップ・階層）を参照できます。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約40時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人（AI活用）</p>
               <div class="work-tags">
                 <span>Dashboard UI</span><span>Project Mgmt</span><span>IA</span>
               </div>
@@ -2411,6 +2442,7 @@ textarea {
               <p class="work-category-tag">WEB APP / TOOL</p>
               <h3 class="work-title">Valance — 気分の記録</h3>
               <p class="work-desc">双極スペクトラムを意識した気分トラッキングアプリ。躁・安定・鬱の気分スペクトラム入力、睡眠・服薬ログ、Chart.js によるトレンドグラフ・PDF レポート出力まで備えたセルフケアツール。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約25時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人（AI活用）</p>
               <div class="work-tags">
                 <span>HTML/CSS/JS</span><span>Chart.js</span><span>Health App</span>
               </div>
@@ -2430,6 +2462,7 @@ textarea {
               <p class="work-category-tag">UI / APP</p>
               <h3 class="work-title">ダンス学習アプリ — UI設計</h3>
               <p class="work-desc">ネイビー×ティールのダークUIで没入感を演出。カリキュラム・ライブ・チャットを整理したモバイルアプリの全画面設計。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約20時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人</p>
               <div class="work-tags">
                 <span>Figma</span><span>Mobile UI</span><span>Prototyping</span>
               </div>
@@ -2452,6 +2485,7 @@ textarea {
               <p class="work-category-tag">WEB DESIGN / CORPORATE</p>
               <h3 class="work-title">モノズキー — 建築設計事務所 コーポレートサイト（写真版）</h3>
               <p class="work-desc">浦添の建築設計事務所のコーポレートサイト案。施工写真を主役に、スクロールで進むシネマティックな構成とスマホ対応を両立。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約20時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人（AI活用）</p>
               <div class="work-tags">
                 <span>Web Design</span><span>Photography</span><span>Responsive</span>
               </div>
@@ -2471,6 +2505,7 @@ textarea {
               <p class="work-category-tag">RESTAURANT BRAND</p>
               <h3 class="work-title">BLANC DE BLANC — ダイニングバー ブランドサイト</h3>
               <p class="work-desc">沖縄・那覇のラグジュアリーダイニングバー「BLANC DE BLANC」のブランドサイト。上質な空間とサービスを体験させるために、余白を活かしたミニマルデザインと高質感な画像で、ブランドの世界観を表現。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約20時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人（AI活用）</p>
               <div class="work-tags">
                 <span>Web Design</span><span>Brand</span><span>Luxury</span>
               </div>
@@ -2490,6 +2525,7 @@ textarea {
               <p class="work-category-tag">ART / PORTFOLIO</p>
               <h3 class="work-title">myk art — 抽象画ポートフォリオ</h3>
               <p class="work-desc">沖縄を拠点に描く抽象絵画の作品ポートフォリオ。色彩と筆致、偶然が生むテクスチャを軸にしたペインティングを、余白を活かしたギャラリー形式でまとめたサイト。UI/UX デザインと並ぶ、作家性の中核となる表現活動を紹介しています。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約12時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人（AI活用）</p>
               <div class="work-tags">
                 <span>Abstract Painting</span><span>Gallery</span><span>Personal Work</span>
               </div>
@@ -2509,6 +2545,7 @@ textarea {
               <p class="work-category-tag">WEB APP / EXPERIENCE</p>
               <h3 class="work-title">La beauté sans concept — ヴァーチャル美術館</h3>
               <p class="work-desc">18点の抽象絵画を一人称視点で歩いて鑑賞できる3D美術館。Three.js（WebGL）で4つの展示室を構築し、WASD／ドラッグ操作・作品クリック解説・作品一覧HUDを備えた没入型Web体験。エントランスはセリフ体と金のアクセントで画廊の格調を演出。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約40時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人（AI活用）</p>
               <ul class="work-metrics" aria-label="数字で見るポイント"><li><strong>18</strong>点の作品</li><li><strong>4</strong>つの展示室</li></ul>
               <div class="work-tags">
                 <span>Three.js</span><span>WebGL</span><span>Virtual Museum</span>
@@ -2529,6 +2566,7 @@ textarea {
               <p class="work-category-tag">WEB APP / EXPERIENCE</p>
               <h3 class="work-title">FLOWER JOURNEY — スクロール体験サイト（sample）</h3>
               <p class="work-desc">スクロールに連動して夕暮れの花畑の中を前へ進んでいく没入型インタラクティブサイト。背景写真から切り抜いた本物の花が手前を流れ、リキッドグラス（すりガラス）のカードが風景の上に静かに浮かびます。WORK / VISION / CONTACT を巡る、写真表現とモーションを組み合わせたブランド体験のサンプル。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約15時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人（AI活用）</p>
               <div class="work-tags">
                 <span>Scroll Interaction</span><span>Liquid Glass</span><span>Motion</span>
               </div>
@@ -2548,6 +2586,7 @@ textarea {
               <p class="work-category-tag">WEB DESIGN</p>
               <h3 class="work-title">Ueda Architects Glamping — リゾート予約サイト</h3>
               <p class="work-desc">白×ナチュラルの上質なリゾートブランドサイト。ライフスタイル写真と余白を活かし、自然体験への期待感を高める設計。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約12時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人</p>
               <div class="work-tags">
                 <span>Figma</span><span>Resort</span><span>UX Design</span>
               </div>
@@ -2567,6 +2606,7 @@ textarea {
               <p class="work-category-tag">WEB DESIGN</p>
               <h3 class="work-title">DAIKEN KOSAN — 不動産コーポレートサイト</h3>
               <p class="work-desc">黒×ゴールドの高級感ある配色と「THE IDEAL FUTURE」のビジョンメッセージで、信頼と上質感を訴求するコーポレートデザイン。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約10時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人</p>
               <div class="work-tags">
                 <span>Figma</span><span>Branding</span><span>Corporate</span>
               </div>
@@ -2586,6 +2626,7 @@ textarea {
               <p class="work-category-tag">WEB DESIGN</p>
               <h3 class="work-title">dank1 — スポーツレッスン Webサイト</h3>
               <p class="work-desc">赤×黒の躍動的なアスレチックデザイン。対角オーバーレイと大判タイポグラフィでブランドの熱量を表現。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約8時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人</p>
               <div class="work-tags">
                 <span>Figma</span><span>Sports</span><span>Visual Design</span>
               </div>
@@ -2605,6 +2646,7 @@ textarea {
               <p class="work-category-tag">WEB DESIGN</p>
               <h3 class="work-title">inn.LLC</h3>
               <p class="work-desc">淡い色調と大判フォトで花のある暮らしを体験させるブランドサイト。柔らかい余白と手仕事感のあるUXで購買意欲を高める。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約10時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人</p>
               <div class="work-tags">
                 <span>Figma</span><span>Lifestyle</span><span>UX Writing</span>
               </div>
@@ -2624,6 +2666,7 @@ textarea {
               <p class="work-category-tag">WEB DESIGN</p>
               <h3 class="work-title">Spotomo — ダンスレッスン ランディングページ</h3>
               <p class="work-desc">鮮やかなペイントスプラッシュビジュアルと数値バッジで第一印象を掴む、コンバージョン特化型LP設計。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約8時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人</p>
               <div class="work-tags">
                 <span>Figma</span><span>LP Design</span><span>CRO</span>
               </div>
@@ -2643,6 +2686,7 @@ textarea {
               <p class="work-category-tag">WEB DESIGN</p>
               <h3 class="work-title">LinkCore — コンサルティング企業サイト</h3>
               <p class="work-desc">ティール×ホワイトの誠実な配色と、カード型コンテンツモジュールで採用・サービス訴求を両立。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約10時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人</p>
               <div class="work-tags">
                 <span>Figma</span><span>UX Design</span><span>Responsive</span>
               </div>
@@ -2662,6 +2706,7 @@ textarea {
               <p class="work-category-tag">WEB DESIGN</p>
               <h3 class="work-title">Synergym — フィットネスジム Webサイト</h3>
               <p class="work-desc">黒×イエローの躍動感あるビジュアルで、ジムブランドの力強さとユーザビリティを両立したコーポレートサイト。</p>
+              <p class="work-meta"><span class="work-meta-label">制作時間</span>約10時間<span class="work-meta-sep" aria-hidden="true">/</span><span class="work-meta-label">体制</span>1人</p>
               <div class="work-tags">
                 <span>Figma</span><span>Web Design</span><span>Branding</span>
               </div>
