@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ケーススタディ：ツボナビ — 指圧学習アプリ | FUJITA MIYUKI</title>
+  <meta name="description" content="症状から探して、人体図で学ぶ指圧学習アプリ「ツボナビ」の制作ケーススタディ。課題、設計の判断、改善の流れをまとめています。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ケーススタディ：ツボナビ — 指圧学習アプリ">
+  <meta property="og:description" content="症状から探して、人体図で学ぶ指圧学習アプリ「ツボナビ」の制作ケーススタディ。">
+  <meta property="og:url" content="https://fjtmyk.netlify.app/case-study-tsubonavi.html">
+  <meta property="og:image" content="https://fjtmyk.netlify.app/images/thumb-tsubonavi.jpg">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --color-bg: #fafaf8;
+  --color-surface: #f5f4f0;
+  --color-dark: #1a1a1a;
+  --color-mid: #555555;
+  --color-light: #999999;
+  --color-border: #e0ddd7;
+  --color-accent2: #c8ab6e;
+  --color-red: #b3261e;
+  --font-serif-jp: 'Noto Serif JP', '游明朝', serif;
+  --font-sans-jp: 'Noto Sans JP', 'ヒラギノ角ゴ Pro', sans-serif;
+  --font-serif-en: 'Cormorant Garamond', serif;
+  --font-sans-en: 'Inter', sans-serif;
+}
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans-jp);
+  font-weight: 300;
+  color: var(--color-dark);
+  background: var(--color-bg);
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+/* header */
+.cs-header {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(250, 250, 248, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+}
+.cs-header .wrap { display: flex; justify-content: space-between; align-items: center; height: 60px; }
+.cs-back, .cs-brand {
+  font-family: var(--font-sans-en);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.cs-back:hover { color: var(--color-accent2); }
+.cs-brand { color: var(--color-light); }
+
+/* hero */
+.cs-hero { padding: 72px 0 40px; }
+.cs-label {
+  font-family: var(--font-sans-en);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--color-accent2);
+  text-transform: uppercase;
+}
+.cs-title {
+  font-family: var(--font-serif-jp);
+  font-weight: 500;
+  font-size: clamp(28px, 5vw, 42px);
+  line-height: 1.4;
+  margin: 16px 0 20px;
+}
+.cs-lead { font-size: 15px; color: var(--color-mid); max-width: 640px; }
+.cs-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--color-border);
+}
+.cs-meta dt {
+  font-family: var(--font-sans-en);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--color-light);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.cs-meta dd { font-size: 13px; font-weight: 500; line-height: 1.7; }
+.cs-actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 13px;
+  text-decoration: none;
+  border: 1px solid var(--color-dark);
+  transition: background 0.2s, color 0.2s;
+}
+.btn-primary { background: var(--color-dark); color: #fff; }
+.btn-primary:hover { background: transparent; color: var(--color-dark); }
+.btn:not(.btn-primary):hover { background: var(--color-dark); color: #fff; }
+
+.cs-cover { margin: 8px 0 0; background: var(--color-surface); }
+.cs-cover figcaption { font-size: 11px; color: var(--color-light); padding: 10px 0; }
+
+/* numbers */
+.cs-numbers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.cs-num b {
+  display: block;
+  font-family: var(--font-serif-en);
+  font-weight: 300;
+  font-size: clamp(40px, 6vw, 56px);
+  line-height: 1;
+  font-variant-numeric: lining-nums;
+}
+.cs-num b small { font-size: 0.4em; color: var(--color-accent2); margin-left: 4px; }
+.cs-num span { display: block; margin-top: 10px; font-size: 13px; }
+.cs-num em { display: block; font-style: normal; font-size: 11px; color: var(--color-light); line-height: 1.7; }
+
+/* sections */
+.cs-section { padding: 64px 0 8px; }
+.cs-section h2 {
+  font-family: var(--font-serif-jp);
+  font-weight: 500;
+  font-size: 24px;
+  margin: 10px 0 24px;
+}
+.cs-section p { font-size: 14px; color: var(--color-mid); margin-bottom: 16px; }
+.cs-section strong { color: var(--color-dark); font-weight: 500; }
+.cs-problem {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 24px;
+}
+.cs-box { background: var(--color-surface); padding: 20px 22px; }
+.cs-box h3 {
+  font-family: var(--font-sans-en);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--color-light);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.cs-box p { margin: 0; font-size: 13px; }
+.cs-box ul { list-style: none; font-size: 13px; color: var(--color-mid); }
+.cs-box li + li { margin-top: 6px; }
+.cs-box li::before { content: "— "; color: var(--color-accent2); }
+
+/* decisions */
+.cs-decisions { list-style: none; counter-reset: d; margin-top: 8px; }
+.cs-decision {
+  counter-increment: d;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 8px 20px;
+  padding: 28px 0;
+  border-top: 1px solid var(--color-border);
+}
+.cs-decision::before {
+  content: counter(d, decimal-leading-zero);
+  font-family: var(--font-serif-en);
+  font-size: 32px;
+  line-height: 1;
+  color: var(--color-accent2);
+  font-variant-numeric: lining-nums;
+}
+.cs-decision h3 {
+  font-family: var(--font-serif-jp);
+  font-weight: 500;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.cs-decision p { margin-bottom: 10px; }
+.cs-why {
+  font-size: 13px;
+  color: var(--color-mid);
+  border-left: 2px solid var(--color-accent2);
+  padding-left: 14px;
+}
+.cs-why b { font-weight: 500; color: var(--color-dark); margin-right: 6px; }
+
+/* timeline */
+.cs-timeline { list-style: none; border-left: 1px solid var(--color-border); margin: 8px 0 0 6px; }
+.cs-timeline li { position: relative; padding: 0 0 22px 24px; font-size: 14px; color: var(--color-mid); }
+.cs-timeline li::before {
+  content: "";
+  position: absolute; left: -5px; top: 9px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--color-bg);
+  border: 1px solid var(--color-accent2);
+}
+.cs-timeline b { color: var(--color-dark); font-weight: 500; }
+.cs-timeline .revert::before { border-color: var(--color-light); }
+
+.cs-next { list-style: none; margin-top: 8px; }
+.cs-next li {
+  font-size: 14px;
+  color: var(--color-mid);
+  padding: 14px 0;
+  border-top: 1px solid var(--color-border);
+}
+.cs-next b { color: var(--color-dark); font-weight: 500; display: block; }
+
+.cs-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.cs-tech span {
+  font-family: var(--font-sans-en);
+  font-size: 11px;
+  border: 1px solid var(--color-border);
+  padding: 4px 12px;
+  color: var(--color-mid);
+}
+
+.cs-footer { margin-top: 80px; padding: 48px 0 64px; border-top: 1px solid var(--color-border); text-align: center; }
+.cs-footer p { font-size: 13px; color: var(--color-mid); margin-bottom: 20px; }
+.cs-footer .cs-actions { justify-content: center; }
+
+@media (max-width: 720px) {
+  .cs-hero { padding-top: 48px; }
+  .cs-meta, .cs-numbers { grid-template-columns: repeat(2, 1fr); }
+  .cs-problem { grid-template-columns: 1fr; }
+  .cs-decision { grid-template-columns: 1fr; }
+  .cs-section { padding-top: 48px; }
+}
+  </style>
+</head>
+<body>
+
+  <header class="cs-header">
+    <div class="wrap">
+      <a class="cs-back" href="./#works">← Portfolio</a>
+      <span class="cs-brand">Case Study 01</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="cs-hero">
+      <div class="wrap">
+        <p class="cs-label">Case Study — Web App / Learning</p>
+        <h1 class="cs-title">ツボナビ<br>症状から探して、人体図で学ぶ指圧学習アプリ</h1>
+        <p class="cs-lead">
+          ツボを調べると、名前から引く情報が中心で、「この不調には、どこを、どの順番で、どう押すか」までがつながりにくいと感じました。ツボナビは入口を<strong>症状</strong>にし、人体図・手順のアニメーション・クイズで、位置と手順と禁忌を一続きで学べるようにしたアプリです。
+        </p>
+
+        <dl class="cs-meta">
+          <div><dt>Role</dt><dd>企画・情報設計・<br>UIデザイン・実装</dd></div>
+          <div><dt>Team</dt><dd>1人（AI活用）</dd></div>
+          <div><dt>Time</dt><dd>約35時間（目安）</dd></div>
+          <div><dt>Platform</dt><dd>Web / PWA<br>（スマホ中心）</dd></div>
+        </dl>
+
+        <div class="cs-actions">
+          <a class="btn btn-primary" href="https://tsubonavi-shiatsu.netlify.app/" target="_blank" rel="noopener">アプリを触ってみる →</a>
+          <a class="btn" href="./#works">作品一覧に戻る</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <figure class="cs-cover">
+        <img src="images/thumb-tsubonavi.jpg" width="1600" height="1200" alt="ツボナビのスマホ画面4枚。症状から探す画面、手順のアニメーション、人体図、クイズ">
+        <figcaption>左から：症状から探す／手順のアニメーション／人体図でツボを確認／クイズ</figcaption>
+      </figure>
+
+      <div class="cs-numbers" aria-label="数字で見るツボナビ">
+        <div class="cs-num"><b>48<small>種</small></b><span>症状別メニュー</span><em>頭・首肩・背中腰・胃腸・全身の5分類</em></div>
+        <div class="cs-num"><b>51<small>点</small></b><span>収録したツボ</span><em>位置・適応・押し方・経穴コード付き</em></div>
+        <div class="cs-num"><b>163<small>問</small></b><span>クイズ</span><em>位置51・適応51・症状48・禁忌13</em></div>
+        <div class="cs-num"><b>8<small>か所</small></b><span>押してはいけない部位</span><em>人体図に赤で表示し、理由も添える</em></div>
+      </div>
+
+      <section class="cs-section" aria-labelledby="s1">
+        <p class="cs-label">01 — Background</p>
+        <h2 id="s1">きっかけと課題</h2>
+        <p>
+          きっかけは、自分や家族の肩こり・頭痛などの不調でした。指圧やマッサージで楽にしたいと思って調べると、ツボの情報は「ツボ名 → 位置 → 効果」の順に並んでいるものが多く、<strong>不調を起点に「何を、どの順で、どれくらいの力で押すか」までたどり着くのに手間がかかる</strong>と感じました。
+        </p>
+        <div class="cs-problem">
+          <div class="cs-box">
+            <h3>User</h3>
+            <p>指圧・マッサージを学んでいる人。ツボの位置・適応・禁忌を覚え、手順を自分の手で再現できるようになりたい。</p>
+          </div>
+          <div class="cs-box">
+            <h3>Problem</h3>
+            <ul>
+              <li>症状から逆引きしにくい</li>
+              <li>文章だけでは位置と押す順番が想像しにくい</li>
+              <li>押してはいけない場所の情報が後回しになりがち</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="cs-section" aria-labelledby="s2">
+        <p class="cs-label">02 — Design Decisions</p>
+        <h2 id="s2">設計の判断</h2>
+        <ol class="cs-decisions">
+          <li class="cs-decision">
+            <div>
+              <h3>入口を「ツボ名」ではなく「症状」にする</h3>
+              <p>トップを症状の一覧にし、48種のメニューを5つの分類で絞り込めるようにしました。検索は読み仮名でも引けるので「いもたれ」「コムラガエリ」のような言い方でも見つかります。ツボ名から引きたい人のために、部位別のツボ一覧も残しています。</p>
+              <p class="cs-why"><b>理由</b>学ぶ人が最初に持っているのは「肩がこる」という困りごとで、ツボの名前ではないため。</p>
+            </div>
+          </li>
+          <li class="cs-decision">
+            <div>
+              <h3>位置は文章ではなく、人体図の上で見せる</h3>
+              <p>前面・背面の筋肉図にツボを重ね、タップでツボ名が出るようにしました。筋肉名の表示も切り替えられます。図はパブリックドメインの Gray's Anatomy（1918年）を使い、前面と背面で着色のテイストをそろえました。</p>
+              <p class="cs-why"><b>理由</b>「指幅2本分外側」のような文章だけでは、初めての人は位置を思い描けないため。</p>
+            </div>
+          </li>
+          <li class="cs-decision">
+            <div>
+              <h3>手順は「教科書の図」のようなアニメーションで</h3>
+              <p>症状ごとに、押す順路と押し方をアニメーションで再生します。順路の線は黄色に縁取りを付けて図の上でも見失わないようにし、動きは画面の左側から右側へと一定の向きにそろえました。最初に姿勢と基本ルール（力を抜く・息を止めない・爪を立てない）を示します。</p>
+              <p class="cs-why"><b>理由</b>位置を覚えても、順番と力加減がわからないと実際には押せないため。</p>
+            </div>
+          </li>
+          <li class="cs-decision">
+            <div>
+              <h3>安全の情報を、後回しにしない</h3>
+              <p>眼球など押してはいけない8か所を人体図に赤で示し、なぜ危ないかを添えました。骨折直後や外傷の急性期など、施術を避けるべき8つの状態も一覧にし、各メニューの最後には受診の目安を表示します。クイズにも禁忌の問題を13問入れています。</p>
+              <p class="cs-why"><b>理由</b>体に触れるアプリなので、効果よりも先に「やってはいけないこと」を確実に伝える必要があるため。</p>
+            </div>
+          </li>
+          <li class="cs-decision">
+            <div>
+              <h3>押して終わりにせず、変化を確かめる</h3>
+              <p>施術の最後に「肩をすくめてストンと落とす」などの確認動作と、楽になったときの目安を表示します。学習面では、位置・適応・症状・禁忌の4範囲から出題するクイズで定着させ、解答数・正答率・要復習の数をこの端末に保存します。</p>
+              <p class="cs-why"><b>理由</b>やってみた結果を自分で確かめられると、学んだ手順と体の変化が結びつきやすいため。</p>
+            </div>
+          </li>
+          <li class="cs-decision">
+            <div>
+              <h3>電波がなくても開ける PWA にする</h3>
+              <p>ホーム画面に追加でき、アプリ本体と人体図を端末に保存するので、電波の弱い場所でも開けます。本体は「まずネットから取り、だめなら保存分を使う」読み込み方にして、更新がすぐ届くことと、オフラインで開けることを両立しました。</p>
+              <p class="cs-why"><b>理由</b>施術する場所は自宅や施術室など、通信が安定しないこともあるため。</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="cs-section" aria-labelledby="s3">
+        <p class="cs-label">03 — Iteration</p>
+        <h2 id="s3">改善の流れ</h2>
+        <p>初版を出したあと、触りながら次の順に直しました（コミット履歴より）。</p>
+        <ol class="cs-timeline">
+          <li><b>初版</b>：筋肉図の上にツボと禁忌部位を表示。症状別メニュー、読み仮名検索、クイズ</li>
+          <li><b>全症状に順路と押し方のアニメーションを追加</b></li>
+          <li><b>UI/UXの見直し</b>：症状を中心にした情報設計に組み替え、タップでツボ名を表示、教科書形式のアニメーション、施術後の確認項目、オフライン対応</li>
+          <li><b>「全身のリラックス（頭から足先まで）」を追加</b>：1日の終わりに通しでできるコース</li>
+          <li><b>順路の線を黄色＋縁取りに</b>：図の上で線が埋もれないように</li>
+          <li class="revert"><b>足裏・頭の解剖図タブを試して、元に戻す</b></li>
+          <li><b>背面の人体図を前面と同じ着色にそろえる</b></li>
+          <li><b>全身コースの拡充</b>：順路を左側から滑らかに、再生ボタンと読み込み表示を改善</li>
+        </ol>
+      </section>
+
+      <section class="cs-section" aria-labelledby="s4">
+        <p class="cs-label">04 — Next</p>
+        <h2 id="s4">次にやること</h2>
+        <p>まだ実際の利用者に使ってもらった検証はしていません。次は次の順で確かめる予定です。</p>
+        <ul class="cs-next">
+          <li><b>学習者に使ってもらう</b>指圧を学んでいる人に「症状を選んで、手順どおりに押す」まで操作してもらい、迷う場所を記録する</li>
+          <li><b>クイズの結果を見る</b>正答率の低い範囲を調べ、説明や図の見せ方を直す</li>
+          <li><b>安全表示の伝わり方を確かめる</b>禁忌の赤い表示が、施術前に確実に目に入っているかを確認する</li>
+        </ul>
+      </section>
+
+      <section class="cs-section" aria-labelledby="s5">
+        <p class="cs-label">05 — Tech</p>
+        <h2 id="s5">使った技術</h2>
+        <div class="cs-tech">
+          <span>HTML</span><span>CSS</span><span>JavaScript</span><span>PWA</span><span>Service Worker</span><span>SVG</span><span>requestAnimationFrame</span><span>localStorage</span><span>Netlify</span>
+        </div>
+      </section>
+
+      <footer class="cs-footer">
+        <p>実際に触ってみると、症状からの流れがよくわかります。</p>
+        <div class="cs-actions">
+          <a class="btn btn-primary" href="https://tsubonavi-shiatsu.netlify.app/" target="_blank" rel="noopener">アプリを触ってみる →</a>
+          <a class="btn" href="./#contact">お問い合わせ</a>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+</body>
+</html>
