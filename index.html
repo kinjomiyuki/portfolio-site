@@ -2112,6 +2112,18 @@ textarea {
   font-weight: 500;
   color: var(--color-dark);
 }
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.form-send-error {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #b3261e;
+}
 .works-note {
   margin-top: 8px;
   font-size: 11px;
@@ -2970,7 +2982,9 @@ textarea {
           </p>
         </div>
         <div class="contact-layout">
-          <form class="contact-form" id="contact-form" novalidate>
+          <form class="contact-form" id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="form-name" value="contact">
+            <p class="form-honeypot" aria-hidden="true"><label>空欄のままにしてください <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
             <div class="form-row">
               <div class="form-group">
                 <label for="contact-name">お名前 <span class="required">*</span></label>
@@ -3009,19 +3023,17 @@ textarea {
               <span class="btn-submit-text">送信する</span>
               <span class="btn-submit-arrow">→</span>
             </button>
-            <div class="form-success" id="form-success" style="display:none;">
+            <p class="form-send-error" id="form-send-error" role="alert" hidden>送信できませんでした。時間をおいて、もう一度お試しください。</p>
+            <div class="form-success" id="form-success" style="display:none;" role="status">
               <div class="success-icon">✓</div>
               <p>お問い合わせを受け付けました。<br>2営業日以内にご返信いたします。</p>
             </div>
           </form>
           <aside class="contact-info">
             <div class="contact-info-block">
-              <h3>SNS</h3>
+              <h3>LINKS</h3>
               <ul class="social-links">
-                <li><a href="#" target="_blank" rel="noopener">Twitter / X</a></li>
-                <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
-                <li><a href="#" target="_blank" rel="noopener">Dribbble</a></li>
-                <li><a href="#" target="_blank" rel="noopener">Behance</a></li>
+                <li><a href="https://github.com/kinjomiyuki" target="_blank" rel="noopener">GitHub</a></li>
               </ul>
             </div>
             <div class="contact-info-block">
@@ -3091,6 +3103,57 @@ textarea {
       });
     }, { threshold: 0.6 });
     els.forEach(function (el) { io.observe(el); });
+  })();
+  </script>
+
+  <script>
+  /* お問い合わせフォーム: 入力チェックをして Netlify Forms に送る */
+  (function () {
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    var btn = document.getElementById('submit-btn');
+    var ok = document.getElementById('form-success');
+    var ng = document.getElementById('form-send-error');
+    var rules = [
+      ['contact-name', 'name-error', function (v) { return v ? '' : 'お名前を入力してください'; }],
+      ['contact-email', 'email-error', function (v) {
+        if (!v) return 'メールアドレスを入力してください';
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? '' : 'メールアドレスの形式を確認してください';
+      }],
+      ['contact-type', 'type-error', function (v) { return v ? '' : 'お問い合わせ種別を選んでください'; }],
+      ['contact-message', 'message-error', function (v) { return v ? '' : 'メッセージを入力してください'; }]
+    ];
+    function check() {
+      var first = null;
+      rules.forEach(function (r) {
+        var el = document.getElementById(r[0]), err = document.getElementById(r[1]);
+        var msg = r[2](el.value.trim());
+        err.textContent = msg;
+        el.classList.toggle('error', !!msg);
+        el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+        if (msg && !first) first = el;
+      });
+      if (first) first.focus();
+      return !first;
+    }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      ng.hidden = true;
+      if (!check()) return;
+      btn.disabled = true;
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      }).then(function (res) {
+        if (!res.ok) throw new Error(res.status);
+        form.querySelectorAll('.form-row, .form-group, .btn-submit').forEach(function (el) { el.style.display = 'none'; });
+        ok.style.display = '';
+      }).catch(function () {
+        ng.hidden = false;
+        btn.disabled = false;
+      });
+    });
   })();
   </script>
 
