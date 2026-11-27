@@ -1350,6 +1350,11 @@ ul, ol { list-style: none; }
   height: auto;
 }
 
+/* 縦型(9:16)の動画は幅を抑えて、縦に長くなりすぎないようにする */
+.video-card--vertical .video-frame {
+  max-width: 360px;
+}
+
 .video-info {
   margin-top: 20px;
 }
@@ -2867,6 +2872,18 @@ body.modal-open { overflow: hidden; }
               <h3 class="video-title">大理石と水のダンス</h3>
               <p class="video-desc">大理石の彫刻のような女性が踊り、白い水に変わって流れ落ち、再び一体の彫刻に戻る約40秒の映像。体を中央で半分に切って鏡写しにする左右対称の構図と、白を基調にした静かなトーンで仕上げました。</p>
               <p class="video-desc">使用ツール：Higgsfield（Nano Banana / Kling 3.0 / ElevenLabs Music）、ffmpeg</p>
+            </figcaption>
+          </figure>
+          <figure class="video-card video-card--vertical">
+            <div class="video-frame">
+              <video controls playsinline preload="none" width="720" height="1280" poster="images/video-poster-cbt-app.jpg" aria-label="夜、ベッドの上でスマートフォンのCBTアプリを使って気持ちを整理し、最後に笑顔になる女性を描いた縦型の宣伝動画">
+                <source src="videos/cbt-app-promo.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="video-info">
+              <p class="work-category-tag">PROMOTION / 9:16</p>
+              <h3 class="video-title">CBTアプリ 宣伝動画</h3>
+              <p class="video-desc">CBT（認知行動療法）ウェルネスアプリ「マインドフル・パス」の縦型宣伝動画。夜に不安を抱えた女性がアプリで気持ちを整理し、笑顔を取り戻すまでを15秒で描きました。</p>
             </figcaption>
           </figure>
         </div>
